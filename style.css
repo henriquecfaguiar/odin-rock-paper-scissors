@@ -1,0 +1,34 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#score {
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  gap: 32px;
+}
+
+.buttons {
+  display: flex;
+  gap: 64px;
+}
+
+.play-again-btn {
+  margin-top: 16px;
+}

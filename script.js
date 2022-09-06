@@ -1,46 +1,85 @@
-const POSSIBLE_CHOICES = ['Rock', 'Paper', 'Scissors'];
-let userScore = 0;
+const buttons = document.querySelectorAll(".button");
+const userElem = document.querySelector("#user-scr");
+const computerElem = document.querySelector("#computer-scr");
+const result = document.querySelector("#result");
+const mainContainer = document.querySelector("#main-container");
+const choicesArr = ["rock", "paper", "scissors"];
+let computerSelection;
+let playerSelection;
 let computerScore = 0;
-const computerSelection = getComputerChoice();
-const buttons = document.querySelectorAll('button');
-const resultDiv = document.getElementById('results');
-const resultRound = document.createElement('p');
-const score = document.createElement('p');
-const resultGame = document.createElement('p');
+let userScore = 0;
 
 buttons.forEach((button) => {
-  button.addEventListener('click', playGame);
+  button.addEventListener("click", playRound, true);
 });
 
-function getComputerChoice() {
-  return POSSIBLE_CHOICES[Math.floor(Math.random() * POSSIBLE_CHOICES.length)];
+function playRound(e, computerSelection) {
+  playerSelection = e.target.parentElement.id;
+  computerSelection = getComputerChoice();
+
+  if (playerSelection === computerSelection) {
+    result.textContent = "It's a tie."
+  } else if (
+    (playerSelection === "rock" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "rock")
+  ) {
+    computerScore++;
+    computerElem.textContent = `Computer: ${computerScore}`;
+    result.textContent = `${capitalize(computerSelection)} beats ${capitalize(playerSelection)}. You lose!`;
+  } else {
+    userScore++;
+    userElem.textContent = `Player: ${userScore}`;
+    result.textContent = `${capitalize(playerSelection)} beats ${capitalize(computerSelection)}. You win!`;
+  }
+
+  if (userScore === 5 || computerScore === 5) {
+    declareWinner(playerSelection, computerSelection);
+  };
 };
 
-function playGame(e) {
-  let playerSelection = e.target.textContent;
-  let computerSelection = getComputerChoice();
+function getComputerChoice() {
+  return choicesArr[Math.floor(Math.random() * choicesArr.length)];
+};
 
-  if ((playerSelection === 'Rock' && computerSelection === 'Paper') || (playerSelection === 'Paper' && computerSelection === 'Scissors') || (playerSelection === 'Scissors' && computerSelection === 'Rock')) {
-    resultRound.textContent = `${computerSelection} beats ${playerSelection}.`;
-    computerScore++;
-  } else if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
-    resultRound.textContent = `${playerSelection} beats ${computerSelection}.`;
-    userScore++;
-  } else {
-    resultRound.textContent = `Both chose ${playerSelection}.`;
-  };
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
-  resultDiv.appendChild(resultRound);
-
-  score.textContent = `Your score: ${userScore}. Computer's score: ${computerScore}.`;
-  resultDiv.appendChild(score);
-
+function declareWinner(playerSelection, computerSelection) {
   if (userScore === 5) {
-    resultGame.textContent = 'Congratulations! You won!'
-    resultDiv.appendChild(resultGame);
-  } else if (computerScore === 5) {
-    resultGame.textContent = "I'm sorry. You lose."
-    resultDiv.appendChild(resultGame);
-  };
+    result.textContent = `${capitalize(playerSelection)} beats ${capitalize(computerSelection)}. Congratulations! You're the ultimate winner!`;
+    disableClick();
+    disPlayAgain();
+  } else {
+    result.textContent = `${capitalize(computerSelection)} beats ${capitalize(playerSelection)}. I'm sorry. The computer is too strong for you.`;
+    disableClick();
+    disPlayAgain();
+  }
+};
 
+function disableClick() {
+  buttons.forEach((button) => {
+    button.removeEventListener("click", playRound, true);
+  })
+};
+
+function disPlayAgain() {
+  const playAgainBtn = document.createElement("button");
+  playAgainBtn.textContent = "Play Again";
+  playAgainBtn.classList.add("play-again-btn");
+  playAgainBtn.addEventListener("click", reset);
+  mainContainer.appendChild(playAgainBtn);
+};
+
+function reset(e) {
+  userScore = 0;
+  computerScore = 0;
+  userElem.textContent = `Player: ${userScore}`;
+  computerElem.textContent = `Computer: ${computerScore}`;
+  e.target.remove();
+  result.textContent = "";
+  buttons.forEach((button) => {
+    button.addEventListener("click", playRound, true);
+  });
 };

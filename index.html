@@ -5,15 +5,31 @@
   <meta charset='UTF-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel="stylesheet" href="./style.css">
   <script type='text/javascript' src='./script.js' defer></script>
-  <title>rock-paper-scissors</title>
+  <title>Rock Paper Scissors</title>
 </head>
 
 <body>
-  <button>Rock</button>
-  <button>Paper</button>
-  <button>Scissors</button>
-  <div id="results"></div>
+  <div id="main-container">
+    <h1> Can you beat the computer in a first of five rock paper scissors game?</h1>
+    <div class="buttons">
+      <div id="rock" class="button">
+        <img src="./images/rock.png" alt="rock shaped hand">
+      </div>
+      <div id="paper" class="button">
+        <img src="./images/paper.png" alt="paper shaped hand">
+      </div>
+      <div id="scissors" class="button">
+        <img src="./images/scissors.png" alt="scissors shaped hand">
+      </div>
+    </div>
+    <div id="score">
+      <p id="user-scr">Player: 0</p>
+      <p id="computer-scr">Computer: 0</p>
+    </div>
+    <div id="result"></div>
+  </div>
 </body>
 
 </html>
