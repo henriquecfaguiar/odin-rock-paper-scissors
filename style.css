@@ -8,6 +8,10 @@ body {
   align-items: center;
 }
 
+.main-text {
+  margin-top: 64px;
+}
+
 .button {
   transition: all 0.2s ease;
 }
@@ -26,9 +30,28 @@ body {
 
 .buttons {
   display: flex;
+  margin-top: 64px;
   gap: 64px;
 }
 
 .play-again-btn {
   margin-top: 16px;
+}
+
+#footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  gap: 8px;
+  background-color: rgba(211, 211, 211, 0.439);
+}
+
+.fa-github {
+  color: black;
+  cursor: pointer;
 }
