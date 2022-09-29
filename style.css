@@ -1,16 +1,107 @@
+:root {
+  --clr-neutral-100: #fff;
+  --clr-neutral-300: #d1faec;
+  --clr-neutral-900: #1f2937;
+
+  --ff-primary: "Roboto", sans-serif;
+
+  --fs-400: 1rem;
+  --fs-700: 1.5rem;
+  --fs-900: 2rem;
+
+  --fw-400: 400;
+  --fw-700: 700;
+}
+
+/* reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  line-height: 1.1;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* layout */
+
+/* utility classes */
+
+
+.text-light {
+  color: var(--clr-neutral-100);
+}
+
+/* general styling */
+
 body {
-  font-family: "Roboto", sans-serif;
+  color: var(--clr-neutral-900);
+  font-family: var(--ff-primary);
+  font-size: var(--fs-400);
+  background-color: var(--clr-neutral-300);
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
 }
 
-#main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+h1 {
+  font-size: var(--fs-900);
 }
 
-.main-text {
-  margin-top: 64px;
-  margin-bottom: 64px;
+img {
+  max-width: 9rem;
+}
+
+a:hover,
+a:focus {
+  opacity: .5;
+}
+
+
+/* individual styling */
+
+header {
+  text-align: center;
+  padding: 1rem;
 }
 
 .button {
@@ -22,37 +113,65 @@ body {
   transform: scale(1.1);
 }
 
-#score {
+.buttons .container {
   display: flex;
-  font-weight: bold;
-  font-size: 18px;
-  gap: 32px;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.buttons {
+.score {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-700);
   display: flex;
-  margin-bottom: 32px;
-  gap: 64px;
+  justify-content: space-around;
+  padding: 1rem 0;
 }
 
-.play-again-btn {
-  margin-top: 16px;
-}
-
-#footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+.result {
+  font-weight: var(--fw-700);
   display: flex;
+  flex-direction: column;
+  text-align: center;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  gap: 8px;
-  background-color: rgba(211, 211, 211, 0.439);
+  gap: 1em;
+  padding: 0 1em;
+  margin-bottom: .5rem;
 }
 
-.fa-github {
-  color: black;
-  cursor: pointer;
+footer {
+  background-color: var(--clr-neutral-900);
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  padding: .5em 1em;
+}
+
+@media(min-width:40em) {
+
+  h1 {
+    margin-top: 3rem;
+  }
+
+  .buttons .container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 5rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  footer {
+    padding: 1em;
+  }
+
+  .score {
+    justify-content: center;
+    gap: 5rem;
+    margin-top: 3rem;
+  }
 }

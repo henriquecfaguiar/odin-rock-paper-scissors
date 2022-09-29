@@ -1,8 +1,8 @@
 const buttons = document.querySelectorAll(".button");
-const userElem = document.querySelector("#user-scr");
-const computerElem = document.querySelector("#computer-scr");
-const result = document.querySelector("#result");
-const mainContainer = document.querySelector("#main-container");
+const userElem = document.querySelector(".user-scr");
+const computerElem = document.querySelector(".computer-scr");
+const result = document.querySelector(".result");
+const mainContainer = document.querySelector("main");
 const choicesArr = ["rock", "paper", "scissors"];
 let computerSelection;
 let playerSelection;
@@ -14,7 +14,8 @@ buttons.forEach((button) => {
 });
 
 function playRound(e, computerSelection) {
-  playerSelection = e.target.parentElement.id;
+  playerSelection = e.target.parentElement.classList[0];
+  console.log(playerSelection);
   computerSelection = getComputerChoice();
 
   if (playerSelection === computerSelection) {
@@ -69,7 +70,7 @@ function disPlayAgain() {
   playAgainBtn.textContent = "Play Again";
   playAgainBtn.classList.add("play-again-btn");
   playAgainBtn.addEventListener("click", reset);
-  mainContainer.appendChild(playAgainBtn);
+  result.appendChild(playAgainBtn);
 };
 
 function reset(e) {
